@@ -57,4 +57,4 @@ SIMD(Single Instruction Multiple Data)即单指令流多数据流，是一种采
 
 运行效率对比：
 
-![替代文字](./image/p1)
+![替代文字](./image/p1.png)
