@@ -1,3 +1,18 @@
+```shell
+//运行sm4.cpp与sm4_optimize
+make
+./sm4
+./sm4_optimize
+
+//运行sm4_aesni.cpp
+g++ -mssse3 -maes -O2 sm4_aesni.cpp -o sm4_aesni
+./sm4_aesni
+
+//运行sm4_gcm.cpp
+g++ -o sm4_gcm.cpp -fopenmp -O3 -march=native
+./sm4_gcm
+```
+
 # SM4的软件实现和优化
 
 ## 优化SM4的软件执行效率
