@@ -20,7 +20,7 @@ pip install blind-watermark
 
 代码运行结果：
 
-
+![运行结果](picture/p1.png)
 
 嵌入水印
 ```python
@@ -45,3 +45,11 @@ print(wm_extract)
 Output:
 >li run ze
 
+|攻击方式|攻击后的图片|提取的水印|
+|--|--|--|
+|亮度攻击|![亮度攻击](output/亮度攻击.png)|'li run ze'|
+|多遮挡攻击|![多遮挡攻击](output/多遮挡攻击.png)|'li run ze'|
+|截屏攻击1|![截屏攻击1](output/截屏攻击1.png)|'li run ze'|
+|截屏攻击2|![截屏攻击2](output/截屏攻击2.png)|'li run ze'|
+|旋转攻击|![旋转攻击](output/旋转攻击.png)|'li run ze'|
+|缩放攻击|![缩放攻击](output/缩放攻击.png)|'li run ze'|
