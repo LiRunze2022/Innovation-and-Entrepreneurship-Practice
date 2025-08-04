@@ -8,8 +8,22 @@
 
 ## 环境配置
 
-命令行中输入以安装circom
+- Node.js：命令行输入
 
 ```shell
-npm install -g circom
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -  
+sudo apt install -y nodejs
 ```
+
+- circom：命令行中输入
+
+```shell
+sudo npm install -g circom
+```
+
+- snarkjs：命令行中输入
+
+```shell
+sudo npm install -g snarkjs
+```
+
