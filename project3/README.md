@@ -8,7 +8,7 @@
 
 ## 环境配置
 
-- Node.js：命令行输入
+- Node.js：命令行中输入
 
 ```shell
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -  
@@ -26,4 +26,6 @@ sudo npm install -g circom
 ```shell
 sudo npm install -g snarkjs
 ```
+
+## circom电路编写
 
