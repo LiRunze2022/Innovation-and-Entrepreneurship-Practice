@@ -51,3 +51,42 @@ sudo npm install -g snarkjs
 ```shell
 circom poseidon2.circom --r1cs --wasm --sym
 ```
+
+## 生成 Groth16 证明
+
+### 生成 trusted setup
+
+```shell
+# 1. 生成 ptau（powers of tau）
+snarkjs powersoftau new bn128 12 pot12_0000.ptau -v
+snarkjs powersoftau contribute pot12_0000.ptau pot12_0001.ptau --name="First Contributor" -v
+
+# 2. 生成 zkey（Groth16 密钥对）
+snarkjs groth16 setup poseidon2.r1cs pot12_0001.ptau poseidon2_0000.zkey
+snarkjs zkey contribute poseidon2_0000.zkey poseidon2_0001.zkey --name="Second Contributor" -v
+snarkjs zkey export verificationkey poseidon2_0001.zkey verification_key.json
+```
+
+### 生成证明
+
+创建输入文件 input.json：
+
+```json
+{
+  "private_input": ["10", "20"]
+  "out": "978769251912840039204148718141236740445251797222770407128323859497250111719"
+}
+```
+
+运行
+
+```shell
+# 1. 计算 witness
+node poseidon2_js/generate_witness.js poseidon2_js/poseidon2.wasm input.json witness.wtns
+
+# 2. 生成证明
+snarkjs groth16 prove poseidon2_0001.zkey witness.wtns proof.json public.json
+
+# 3. 验证证明
+snarkjs groth16 verify verification_key.json public.json proof.json
+```
