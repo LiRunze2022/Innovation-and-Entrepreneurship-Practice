@@ -6,3 +6,10 @@
 
 3) 用Groth16算法生成证明
 
+## 环境配置
+
+命令行中输入以安装circom
+
+```shell
+npm install -g circom
+```
