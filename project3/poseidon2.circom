@@ -86,7 +86,7 @@ template Poseidon2(){
     var T = 3;
 
     signal input private_input[T - 1];
-    signal output out;
+    signal input out;
 
     signal states[TOTAL_ROUNF + 1][T];
 
@@ -113,7 +113,7 @@ template Poseidon2(){
         }
     }
 
-    out <== states[TOTAL_ROUNF][0];
+    out === states[TOTAL_ROUNF][0];
 }
 
 component main = Poseidon2();
