@@ -62,3 +62,17 @@ uint32_t IV[8] = {
 
 ## SM3算法SIMD优化
 
+1. SIMD指令使用：
+
+  - 使用AVX2指令集(__m256i类型)并行处理数据
+  - 实现了SIMD版本的rotateleft, FF, GG, P0, P1等核心函数
+2. 关键优化点：
+  - expand_avx和compress_avx函数使用AVX2指令重写
+  - 使用_mm256_set1_epi32广播标量值到整个SIMD寄存器
+  - 使用_mm256_xor_si256等指令进行并行位操作
+3. 内存访问优化：
+  - 使用alignas(32)确保内存对齐，提高AVX指令效率
+  - 减少不必要的内存访问，尽量在寄存器中操作
+
+## 结果对比
+
