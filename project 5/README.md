@@ -61,3 +61,38 @@ SM2 使用特定的椭圆曲线参数（推荐曲线 `sm2p256v1`）：
    - 检查 $\text{Hash}(x_{S} \Vert M \Vert y_{S}) \stackrel{?}{=} C_{3}$
 
 6. 输出明文 $M$
+
+## SM2 数字签名流程
+**目标**：使用私钥 $d$ 对消息 $M$ 签名
+
+### 步骤
+1. 预处理消息：
+   - 计算 $Z_{A} = \text{Hash}(\text{用户ID} \Vert \text{公钥} \Vert \text{曲线参数})$
+   - 计算 $e = \text{Hash}(Z_{A} \Vert M)$
+
+2. 生成签名：
+   - 随机选取 $k \in [1, n-1]$
+   - 计算 $(x_{1}, y_{1}) = k \times G $
+   - 计算 $r = (e + x_{1}) \mod n $
+   - 计算 $s = (1 + d)^{-1} \times (k - r \times d) \mod n$
+
+3. 输出签名 $(r, s)$
+
+## SM2 签名验证流程
+**目标**：验证签名 $(r, s)$ 是否有效
+
+### 步骤
+1. 检查范围：
+   - 确保 $r, s \in [1, n-1]$
+
+2. 预处理消息：
+   - 计算 $Z_{A}$ 和 $e = \text{Hash}(Z_{A} \Vert M)$
+
+3. 计算中间值：
+   - 计算 $t = (r + s) \mod n$
+   - 计算 $(x_{1}, y_{1}) = s \times G + t \times P$
+
+4. 验证签名：
+   - 计算 $R = (e + x_{1}) \mod n$
+   - 检查 $R \stackrel{?}{=} r$
+
