@@ -50,9 +50,14 @@
   - 确定交集索引： $J=\lbrace j|E_{j}\in Z\rbrace$
 3. 同态聚合：
   - P1计算交集值之和的加密： $AEnc(S)=ASum(\lbrace D_{j} \rbrace)$
-  - 刷新密文随机性： $AEnc^{\prime}(S)\rightarrow ARefresh(AEnc(S))$
-4. P1发送 $$AEnc^{\prime}(S)$ 给P2
+  - 刷新密文随机性： $AEnc^{\prime}(S)\leftarrow ARefresh(AEnc(S))$
+4. P1发送 $AEnc^{\prime}(S)$ 给P2
 
 ### 5.输出阶段
 
-1. P2：解密 $S\rleft
+1. P2：解密 $S\rightarrow ADec(sk,AEnc^{\prime}(S))$ ,输出 $(C,S)$
+2. P1：通过交集索引 $J$ 直接获得 $C=|J|$
+
+## 协议实现
+
+参考 [P1代码](./p1.py) 和 [P2代码](./p2.py)
