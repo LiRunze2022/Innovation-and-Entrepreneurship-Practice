@@ -15,3 +15,16 @@
  ## 协议流程
 
  ### 1.初始化阶段
+
+1. 双方约定：
+  - 素数阶群 $G$ (DDH假设成立）
+  - 哈希函数 $H: U\rightarrow G$
+
+2. 密钥生成：
+  - P1随机选择 $k_{1} \in G$
+  - P2随机选择 $k_{2} \in G$ 和同态加密密钥对 $(pk,sk) \leftarrow AGen(\lambda)$ ,并公开 $pk$
+
+### Round 1 (P1 $\rightarrow$ P2)
+
+1. P1对每个 $v_{i}$ 计算：
+  - $A_{i}=H(v_{i})^{k_{1}}$
